@@ -9,7 +9,6 @@ import os
 import requests
 from sklearn.cluster import DBSCAN
 from geopy.distance import distance as geodistance
-
 app = Flask(__name__)
 CORS(app)
 
@@ -24,6 +23,35 @@ def generate_sea_grid(step=0.05):
     lons = np.arange(SEA_LON_MIN, SEA_LON_MAX, step)
     grid = [(lat, lon) for lat in lats for lon in lons]
     return grid
+    def cluster_hotspots(coords, preds, eps_km=10):
+   
+    high_points = [(lat, lon) for (lat, lon), pred in zip(coords, preds) if pred > 5]
+    if not high_points:
+        return []
+    from sklearn.preprocessing import StandardScaler
+    X = np.array(high_points)
+    X_scaled = StandardScaler().fit_transform(X)
+    clustering = DBSCAN(eps=0.5, min_samples=2).fit(X_scaled)
+    labels = clustering.labels_
+    zones = []
+    for label in set(labels):
+        if label == -1:
+            continue  # noise
+        members = X[labels == label]
+        centroid = members.mean(axis=0)
+        zones.append(tuple(centroid))
+    return zones
+
+def create_grid(center, radius_km, step_km=5):
+    lat0, lon0 = center
+    points = []
+    for dlat in np.arange(-radius_km, radius_km+step_km, step_km):
+        for dlon in np.arange(-radius_km, radius_km+step_km, step_km):
+            lat = lat0 + dlat / 111
+            lon = lon0 + dlon / (111 * np.cos(np.radians(lat0)))
+            if geodistance(center, (lat, lon)).km <= radius_km:
+                points.append((lat, lon))
+    return points
 
 def get_env_features(lat, lon):
     url = (
@@ -63,6 +91,30 @@ def get_env_features(lat, lon):
 @app.route('/')
 def serve_index():
     return send_from_directory('static', 'index.html')
+    @app.route('/species_zones', methods=['GET'])
+def species_zones():
+    species = request.args.get('species', 'mackerel')
+    df = fishing_df
+    if df.empty:
+        return jsonify({'type': 'FeatureCollection', 'features': []})
+    # Filter by species
+    df_species = df[df['species'].str.lower() == species.lower()]
+    if df_species.empty:
+        return jsonify({'type': 'FeatureCollection', 'features': []})
+    # Build KDTree for fast nearest-neighbor interpolation
+    tree = cKDTree(df_species[['lat', 'lon']].values)
+    grid = generate_sea_grid(step=0.05)
+    features_geo = []
+    grid_points = np.array(grid)
+    dists, idxs = tree.query(grid_points, k=1)
+    for (lat, lon), i in zip(grid_points, idxs):
+        catch_pred = df_species.iloc[i]['catch']
+        features_geo.append({
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [lon, lat]},
+            "properties": {"catch_pred": float(catch_pred)}
+        })
+    return jsonify({"type": "FeatureCollection", "features": features_geo})
 
 @app.route('/predict_zones', methods=['GET'])
 def predict_zones():
@@ -251,6 +303,55 @@ def cluster_hotspots(coords, preds, eps_km=10):
         centroid = members.mean(axis=0)
         zones.append(tuple(centroid))
     return zones
+def tsp_route(user_loc, hotspots):
+    points = [user_loc] + hotspots
+    coords = np.array(points)
+    dist_matrix = cdist(coords, coords, lambda u, v: geodesic(u, v).km)
+    n = len(points)
+    visited = [0]
+    route = [user_loc]
+    while len(visited) < n:
+        last = visited[-1]
+        next_idx = np.argmin([dist_matrix[last, j] if j not in visited else np.inf for j in range(n)])
+        visited.append(next_idx)
+        route.append(tuple(coords[next_idx]))
+    return route
+
+def route_distance(route_points):
+    # route_points: list of (lat, lon)
+    total = 0
+    for i in range(len(route_points)-1):
+        total += geodesic(route_points[i], route_points[i+1]).km
+    return total
+
+
+
+@app.route('/log_catch', methods=['POST'])
+def log_catch():
+    data = request.json
+    log_file = 'catch_logs.csv'
+    # Ensure all fields exist
+    user = data.get('user', 'unknown')
+    lat = data.get('lat', 0)
+    lon = data.get('lon', 0)
+    catch = data.get('catch', data.get('weight', 0))
+    species = data.get('species', data.get('fishType', 'unknown'))
+    price = data.get('price', 0)
+    buyer = data.get('buyer', '')
+    timestamp = data.get('timestamp', '')
+    with open(log_file, 'a') as f:
+        f.write(f"{user},{lat},{lon},{catch},{species},{price},{buyer},{timestamp}\n")
+    return jsonify({'status': 'success'})
+
+@app.route('/catch_log', methods=['GET'])
+def catch_log():
+    log_file = 'catch_logs.csv'
+    logs = []
+    if os.path.exists(log_file):
+        df = pd.read_csv(log_file, header=None, names=['user','lat','lon','catch','species','price','buyer','timestamp'])
+        logs = df.to_dict(orient='records')
+    return jsonify({'logs': logs})
+
 
 def create_grid(center, radius_km, step_km=5):
     lat0, lon0 = center
@@ -262,15 +363,22 @@ def create_grid(center, radius_km, step_km=5):
             if geodistance(center, (lat, lon)).km <= radius_km:
                 points.append((lat, lon))
     return points
+@app.route('/tamil_voice_route', methods=['POST'])
+def tamil_voice_route():
+    data = request.get_json() or {}
+    route_text = data.get('route', 'மிகவும் வணக்கம்! இன்று பரந்தபட்ட கடல் பகுதியில் அதிக அளவில் மீன் கிடைக்கும் வாய்ப்பு இருக்கிறது. சுடர்ச்சூட்டத்தின் அடிப்படையில், உங்கள் படகு வடகிழக்கு திசையில் 30 கிலோமீட்டர் செல்ல பரிந்துரைக்கப்படுகிறது. இந்த பாதை எரிபொருள் செலவை குறைக்கும் மற்றும் பாதுகாப்பானதாகும். பாதுகாப்பாக மீன்பிடியுங்கள்!')
 
-def is_in_banned_zone(point):
-    lat, lon = point
-    # Example: ban a small area (replace with real logic or shapefile)
-    return (9.2 < lat < 9.3) and (79.1 < lon < 79.2)
+    # Generate a unique filename for each request
+    audio_filename = f'tamil_route_{uuid.uuid4().hex}.mp3'
+    audio_path = os.path.join('static', audio_filename)
+    try:
+        tts = gTTS(text=route_text, lang='ta')
+        tts.save(audio_path)
+        # Optionally, clean up old audio files (not implemented here)
+        return jsonify({'audio_url': f'/static/{audio_filename}'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-def is_weather_safe(point):
-    # For demo, always True. You can add real logic using get_env_features.
-    return True
 
 def score_fn(start, point, yield_score, max_range=60):
     distance_penalty = geodistance(start, point).km / max_range
