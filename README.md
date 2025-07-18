@@ -1,83 +1,213 @@
-NEMO -NAVIGATIONAL ENGINE USING MARINE OPTIMIZATION
-
-
- Transforming Coastal Livelihoods with AI-Powered Precision Fishing
-Problem: 
-Coastal fishermen in Tamil Nadu face declining fish stocks, unpredictable weather, and fuel costs. Traditional fishing is based on intuition, not data — leading to wasted trips, low yields, and financial insecurity.  
-
-Solution:
-Our AI-powered application leverages satellite data (SST, chlorophyll, wind), fleet behavior, and regulatory boundaries to help Tamil Nadu’s fishermen identify profitable,safe, and fuel-efficient,fishing routes — spoken in Tamil, optimized for non-literate users, and visualized on an interactive map.
 
 ---
 
- Why It Matters
+ **NEMO – Navigational Engine Using Marine Optimization**
 
-Data-Driven Fishing: Replaces guesswork with science-backed predictions.
-Fuel Savings:Optimized routes reduce fuel consumption by up to 40%.
-Livelihood Upliftment: Increases catch probability, income, and safety.
-Zero-Literacy Friendly: Tamil audio guidance makes it fully accessible.
-Uses Public Satellite & Fleet Data: Affordable, scalable, and community-first.
+ *Transforming Coastal Livelihoods with AI-Powered Precision Fishing*
+
+---
+
+ Problem
+
+Coastal fishermen in Tamil Nadu face declining fish stocks, unpredictable weather, and high fuel costs. Fishing decisions are driven by generational intuition rather than actionable data — leading to low yields, wasted trips, and financial vulnerability.
 
 
+
+ Solution
+
+**NEMO** is an AI-powered navigational assistant that uses real-time satellite data, historical fleet behavior, and marine regulations to recommend **high-yield, low-risk, and fuel-optimized fishing routes**, translated into spoken Tamil. Designed for zero-literacy, the platform offers intuitive audio and map guidance tailored to fishermen’s daily needs.
+
+
+### ❖ Why It Matters
+
+| Benefit                    | Impact                                                           |
+| -------------------------- | ---------------------------------------------------------------- |
+| **Data-Driven Fishing**    | Replaces intuition with environmental data and historical trends |
+| **Fuel Savings**           | Route optimization reduces fuel consumption by up to 40%         |
+| **Livelihood Upliftment**  | Improves catch predictability, income stability, and safety      |
+| **Zero-Literacy Friendly** | Fully accessible with Tamil voice guidance                       |
+| **Scalable & Affordable**  | Uses publicly available satellite and fleet data                 |
+
+---
 
  Core Features
 
-| Feature                         | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| Fish Yield Prediction  | ML model trained on SST, chlorophyll, fleet data to predict hot fishing zones |
-| Route Optimization    | Algorithm computes shortest safe path to high-yield zones under 40km        |
-| GFW Fleet Integration  | Visualizes daily fishing fleet activity from `.csv` uploaded data           |
-| Tamil Audio Assistant  | Generates spoken directions in Tamil for every route                        |
-| Risk Area Filtering   | Filters zones with bad weather, overfished areas, or marine restrictions     |
-| Mobile Ready        | Flask-based backend ready for Android/iOS wrappers                         |
+| Feature                   | Description                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------- |
+| **Fish Yield Prediction** | ML model trained on SST (Sea Surface Temperature), chlorophyll, and fleet movement data     |
+| **Route Optimization**    | Distance-efficient and risk-averse algorithm suggesting best fishing path under fuel limits |
+| **GFW Fleet Integration** | Upload fleet data (.csv) from Global Fishing Watch to visualize recent fishing activity     |
+| **Tamil Audio Assistant** | Generates Tamil spoken instructions using gTTS                                              |
+| **Risk Area Filtering**   | Filters zones with high waves, poor chlorophyll levels, or marine restrictions              |
+| **Mobile Ready**          | Flask backend supports Android/iOS wrappers with lightweight UI                             |
 
 ---
 
  Tech Stack
 
-| Layer           | Technology                          |
-|----------------|-------------------------------------|
-| Backend         | Python + Flask                      |
-| AI Model        | Scikit-learn (SST, Chlorophyll, etc.)|
-| Data Sources    | NASA, NOAA, GFW Fleet `.csv`        |
-| Optimization    | `geopy`, `folium`, `numpy`, `scipy` |
-| Voice Engine    | `gTTS` (Tamil)                      |
-| Visualization   | `folium`, Leaflet.js                |
+| Layer                 | Tools & Libraries                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------ |
+| **Backend**           | Python + Flask                                                                                   |
+| **Frontend Map**      | Folium, Leaflet.js                                                                               |
+| **AI Models**         | Scikit-learn, XGBoost, Custom LSTM models                                                        |
+| **Optimization**      | NumPy, SciPy, Geopy, NetworkX                                                                    |
+| **Voice Engine**      | gTTS (Tamil text-to-speech)                                                                      |
+| **Data Sources**      | NASA (SST), NOAA (Chlorophyll), GFW (Fleet .csv uploads)                                         |
+| **ML Chatbot (R\&D)** | Transformer from scratch (PyTorch), fine-tuned on Tamil marine FAQs for onboard query resolution |
 
 ---
 
-How It Works – Pipeline
+ Model Training
 
-1. Input
-   - User location (lat/lon), fuel range  
-   - Uploaded `.csv` of recent fleet activity (daily fleet data)
+Dataset
 
-2. **Prediction Engine**  
-   - Predicts catch scores on a 10km grid  
-   - Combines satellite + GFW historical patterns
+* **Fleet Behavior Data** – GFW `.csv` (3 datasets, merged and cleaned)
+* **Satellite SST/Chlorophyll** – Extracted from open APIs & historical NetCDF files (converted)
+* **Labels** – Approximate catch scores created from fleet density + SST alignment
 
-3. **Optimizer**  
-   - Filters by safe zones, computes distance-cost  
-   - Selects zone with best yield-to-fuel ratio
+ ML Pipeline
 
-4. **Output**  
-   - Route map with Tamil voice instruction  
-   - Safe return route with alerts and markers
+1. **Preprocessing** – Normalize SST, interpolate missing chlorophyll
+2. **Feature Engineering** – Compute rolling averages, chlorophyll-to-SST delta
+3. **Model Used**
+
+   * **Regression:** XGBoost Regressor for catch probability
+   * **Time-Series:** Custom LSTM for seasonal prediction
+   * **Clustering:** DBSCAN for identifying high-yield zones based on grid density
+4. **Fine-tuning**
+
+   * Trained on temporal slices (month-wise)
+   * Grid Search for hyperparameters
 
 ---
 
- Example Use Case
- a fisherman from Nagapattinam, starts his app near the coast with a fuel range of 30 km.
+ Transformer Model (AI Chatbot – R\&D)
 
-- The app suggests a path 22 km east with a **0.91 yield score**
-- Tamil voice output:  
-  _“மீனவர்கள் சகோதரரே, கிழக்கு திசைக்கு 22 கி.மீ பயணியுங்கள். அதிகமான மீன் வாய்ப்பு உள்ளது.”_
-- He returns with 3x more catch than usual — saving fuel and avoiding storms.
+* Built using PyTorch Transformer from scratch
+* Trained on FAQs in Tamil related to:
 
-- For any queries contact- anjanarangarajan06@gmail.com
-- TEAM NEXUS:
-- ANJANA RANGARAJAN
-- KRISHNA TULASI S
+  * Fishing zones
+  * Regulations
+  * Weather conditions
+* Preprocessing: Tokenized Tamil corpus, positional encoding
+* Output: Tamil chatbot that can answer “இன்று கடல் நிலை எப்படி?”
+
+---
+
+ Optimization Logic
+
+1. **Input:**
+
+   * Current location (`lat/lon`)
+   * Fuel limit (converted to distance range)
+   * Latest fleet `.csv` data
+
+2. Process:
+
+   * Generate 10km grid from current location
+   * Score each grid using:
+
+     * ML-predicted yield
+     * Distance from current location
+     * Exclusion if in risk zones
+
+3. Selection:
+
+   * Apply yield-to-fuel ratio optimization
+   * Compute safest shortest route using NetworkX
+   * Validate against marine boundary constraints
+
+4. Output:
+
+   * Map with markers and Tamil instructions
+   * Route line from current to optimal point
+   * Alerts: red markers for restricted zones
+
+---
+
+ Example: Use Case
+
+> A fisherman from Nagapattinam opens the app with a 30 km fuel range.
+
+* The app scans uploaded `.csv` of recent fleet data
+
+* SST + chlorophyll pattern suggests zone 22 km east with a **yield score of 0.91**
+
+* Tamil voice instruction:
+
+  > “மீனவர்கள் சகோதரரே, கிழக்கு திசைக்கு 22 கி.மீ பயணியுங்கள். அதிகமான மீன் வாய்ப்பு உள்ளது.”
+
+* He returns with 3× higher catch, avoiding poor yield zones and high-risk waters.
+
+---
+
+###  APIs Used
+
+| Purpose                           | API/Source                         |
+| --------------------------------- | ---------------------------------- |
+| **Sea Surface Temperature (SST)** | NASA GHRSST L4 MUR SST             |
+| **Chlorophyll Data**              | NOAA CoastWatch                    |
+| **Weather & Wind**                | OpenWeatherMap Marine API          |
+| **Fleet Movement**                | Global Fishing Watch `.csv` Upload |
+| **Geocoding/Distance**            | OpenStreetMap Nominatim, Geopy     |
+
+---
+
+###  How To Run
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/your-repo/nemo-ai
+cd nemo-ai
+```
+
+2. **Setup Virtual Environment**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+3. **Run the Flask App**
+
+```bash
+python app.py
+```
+
+
+
+4. **Enter Location & Fuel Range → Get Map & Tamil Voice Route**
+
+---
+
+### ❖ What’s Next
+
+| Task                             | Status                                                        |
+| -------------------------------- | ------------------------------------------------------------- |
+| **Live Satellite Integration**   | Partially Done – Currently uses static + API blend            |
+| **End-to-End Mobile Deployment** | Pending – Requires Android/iOS wrapper                        |
+| **Tamil Chatbot UI**             | R\&D working prototype exists                                 |
+| **Model Performance Dashboard**  | In Progress – Will show route efficiency and model accuracy   |
+| **Onboard Device Integration**   | Future Scope – Raspberry Pi with GPS module for offline usage |
+
+---
+
+### 📬 Contact
+
+> **For queries or collaborations**
+> anjanarangarajan06@gmail.com
+
+---
+
+### 🚀 TEAM NEXUS
+
+* **Anjana Rangarajan**
+* **Krishna Tulasi S**
+
+---
+
 
 
 
