@@ -91,6 +91,10 @@ Dataset
   * Weather conditions
 * Preprocessing: Tokenized Tamil corpus, positional encoding
 * Output: Tamil chatbot that can answer “இன்று கடல் நிலை எப்படி?”
+<img width="607" height="339" alt="Screenshot 2025-07-18 at 8 24 39 AM" src="https://github.com/user-attachments/assets/2c93ba86-9518-4117-a4c8-a349fc9fc86b" />
+
+  
+<img width="656" height="215" alt="Screenshot 2025-07-18 at 8 25 12 AM" src="https://github.com/user-attachments/assets/d6a04d67-2473-4dbe-923e-7e2c2b256cdc" />
 
 ---
 
