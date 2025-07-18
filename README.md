@@ -96,6 +96,9 @@ Dataset
   
 <img width="656" height="215" alt="Screenshot 2025-07-18 at 8 25 12 AM" src="https://github.com/user-attachments/assets/d6a04d67-2473-4dbe-923e-7e2c2b256cdc" />
 
+<img width="739" height="285" alt="Screenshot 2025-07-18 at 10 07 29 AM" src="https://github.com/user-attachments/assets/8e7ab274-2b68-4c54-8e9a-db0cebe5a843" />
+<img width="756" height="231" alt="Screenshot 2025-07-18 at 10 07 52 AM" src="https://github.com/user-attachments/assets/c29f431f-dc9e-462e-9486-853dd5d824c5" />
+
 ---
 
  Optimization Logic
@@ -197,6 +200,13 @@ python app.py
 | **Onboard Device Integration**   | Future Scope – Raspberry Pi with GPS module for offline usage |
 
 ---
+<img width="845" height="701" alt="Screenshot 2025-07-18 at 10 05 56 AM" src="https://github.com/user-attachments/assets/4d313215-24ed-466f-b987-7fedf0f1ddd6" />
+
+UI SCREENSHOT
+<img width="1459" height="751" alt="Screenshot 2025-07-18 at 10 08 43 AM" src="https://github.com/user-attachments/assets/4b005d74-897b-466c-80da-2346ef55cb77" /><img width="1165" height="560" alt="Screenshot 2025-07-18 at 10 09 11 AM" src="https://github.com/user-attachments/assets/0d1161c6-13ee-45fb-bb20-6e35451157cd" />
+Working
+
+https://youtu.be/PychHTBrZaI
 
 ### 📬 Contact
 
