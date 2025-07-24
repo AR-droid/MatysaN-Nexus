@@ -1,83 +1,85 @@
-NEMO -NAVIGATIONAL ENGINE USING MARINE OPTIMIZATION
+# ICAMM 2025 - Conference Website
 
+## Sixth International Conference on Applied Mathematical Models
 
- Transforming Coastal Livelihoods with AI-Powered Precision Fishing
-Problem: 
-Coastal fishermen in Tamil Nadu face declining fish stocks, unpredictable weather, and fuel costs. Traditional fishing is based on intuition, not data — leading to wasted trips, low yields, and financial insecurity.  
+This repository contains the official website for ICAMM 2025, hosted by the Department of Mathematics at PSG College of Technology, Coimbatore, Tamil Nadu, India.
 
-Solution:
-Our AI-powered application leverages satellite data (SST, chlorophyll, wind), fleet behavior, and regulatory boundaries to help Tamil Nadu’s fishermen identify profitable,safe, and fuel-efficient,fishing routes — spoken in Tamil, optimized for non-literate users, and visualized on an interactive map.
+### Conference Details
+- **Event**: Sixth International Conference on Applied Mathematical Models (ICAMM 2025)
+- **Dates**: August 7-8, 2025
+- **Venue**: PSG College of Technology, Coimbatore, Tamil Nadu, India
+- **Host**: Department of Mathematics
+
+### Website Features
+- Modern, responsive design optimized for all devices
+- Professional academic conference layout
+- Interactive navigation with smooth scrolling
+- Comprehensive conference information including:
+  - About the conference
+  - Call for papers
+  - Important dates timeline
+  - Registration details and fees
+  - Organizing committee information
+  - Contact details and venue information
+
+### Technical Stack
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Styling**: Custom CSS with modern design principles
+- **Icons**: Font Awesome 6.0
+- **Fonts**: Inter (Google Fonts)
+- **Responsive**: Mobile-first design approach
+
+### File Structure
+```
+├── index.html          # Main homepage
+├── styles.css          # Main stylesheet
+├── script.js           # Interactive functionality
+├── committee.html      # Organizing committee page
+├── contact.html        # Contact and venue information
+└── README.md          # Project documentation
+```
+
+### Key Sections
+1. **Hero Section**: Conference title, dates, and call-to-action buttons
+2. **About**: Conference overview and highlights
+3. **Call for Papers**: Topics and submission guidelines
+4. **Important Dates**: Timeline of key deadlines
+5. **Registration**: Fees and registration information
+6. **Committee**: Organizing team details
+7. **Contact**: Venue and contact information
+
+### Design Features
+- Clean, academic design with professional color scheme
+- Gradient backgrounds and modern typography
+- Interactive hover effects and animations
+- Responsive grid layouts
+- Professional button styling and form elements
+
+### Browser Support
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+### Getting Started
+1. Clone the repository
+2. Open `index.html` in a web browser
+3. No build process required - pure HTML/CSS/JS
+
+### Customization
+The website can be easily customized by:
+- Updating content in HTML files
+- Modifying colors and styling in `styles.css`
+- Adding new functionality in `script.js`
+
+### Contact
+For questions about the website or conference:
+- Email: icamm2025@psgtech.ac.in
+- Website: icamm2025.psgtech.ac.in
 
 ---
 
- Why It Matters
+## Previous Project: NEMO - Navigational Engine Using Marine Optimization
 
-Data-Driven Fishing: Replaces guesswork with science-backed predictions.
-Fuel Savings:Optimized routes reduce fuel consumption by up to 40%.
-Livelihood Upliftment: Increases catch probability, income, and safety.
-Zero-Literacy Friendly: Tamil audio guidance makes it fully accessible.
-Uses Public Satellite & Fleet Data: Affordable, scalable, and community-first.
-
-
-
- Core Features
-
-| Feature                         | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| Fish Yield Prediction  | ML model trained on SST, chlorophyll, fleet data to predict hot fishing zones |
-| Route Optimization    | Algorithm computes shortest safe path to high-yield zones under 40km        |
-| GFW Fleet Integration  | Visualizes daily fishing fleet activity from `.csv` uploaded data           |
-| Tamil Audio Assistant  | Generates spoken directions in Tamil for every route                        |
-| Risk Area Filtering   | Filters zones with bad weather, overfished areas, or marine restrictions     |
-| Mobile Ready        | Flask-based backend ready for Android/iOS wrappers                         |
-
----
-
- Tech Stack
-
-| Layer           | Technology                          |
-|----------------|-------------------------------------|
-| Backend         | Python + Flask                      |
-| AI Model        | Scikit-learn (SST, Chlorophyll, etc.)|
-| Data Sources    | NASA, NOAA, GFW Fleet `.csv`        |
-| Optimization    | `geopy`, `folium`, `numpy`, `scipy` |
-| Voice Engine    | `gTTS` (Tamil)                      |
-| Visualization   | `folium`, Leaflet.js                |
-
----
-
-How It Works – Pipeline
-
-1. Input
-   - User location (lat/lon), fuel range  
-   - Uploaded `.csv` of recent fleet activity (daily fleet data)
-
-2. **Prediction Engine**  
-   - Predicts catch scores on a 10km grid  
-   - Combines satellite + GFW historical patterns
-
-3. **Optimizer**  
-   - Filters by safe zones, computes distance-cost  
-   - Selects zone with best yield-to-fuel ratio
-
-4. **Output**  
-   - Route map with Tamil voice instruction  
-   - Safe return route with alerts and markers
-
----
-
- Example Use Case
- a fisherman from Nagapattinam, starts his app near the coast with a fuel range of 30 km.
-
-- The app suggests a path 22 km east with a **0.91 yield score**
-- Tamil voice output:  
-  _“மீனவர்கள் சகோதரரே, கிழக்கு திசைக்கு 22 கி.மீ பயணியுங்கள். அதிகமான மீன் வாய்ப்பு உள்ளது.”_
-- He returns with 3x more catch than usual — saving fuel and avoiding storms.
-
-- For any queries contact- anjanarangarajan06@gmail.com
-- TEAM NEXUS:
-- ANJANA RANGARAJAN
-- KRISHNA TULASI S
-
-
-
+*Note: This repository was originally for the NEMO project (AI-powered fishing navigation system) but has been updated to host the ICAMM 2025 conference website. The original NEMO project was developed by Team Nexus (Anjana Rangarajan & Krishna Tulasi S) for transforming coastal livelihoods with AI-powered precision fishing.*
