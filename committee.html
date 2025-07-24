@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee - ICAMM 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .committee-section {
+            padding: 2rem 0;
+        }
+        
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .committee-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .committee-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-title {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .member-affiliation {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .member-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .member-contact a {
+            color: #2c5aa0;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .member-contact a:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="index.html" style="text-decoration: none; color: inherit;">ICAMM 2025</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#call-for-papers" class="nav-link">Call for Papers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#dates" class="nav-link">Important Dates</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#registration" class="nav-link">Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a href="committee.html" class="nav-link">Committee</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="hero" style="min-height: 40vh;">
+        <div class="hero-container" style="grid-template-columns: 1fr; text-align: center;">
+            <div class="hero-content">
+                <h1 class="hero-title" style="font-size: 3rem;">Organizing Committee</h1>
+                <p class="hero-description">Meet the dedicated team organizing ICAMM 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Sections -->
+    <section class="committee-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Chief Patron</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. L. Gopalakrishnan</div>
+                    <div class="member-title">Managing Trustee</div>
+                    <div class="member-affiliation">PSG & Sons' Charities Trust</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="committee-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Patron</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. R. Rudramoorthy</div>
+                    <div class="member-title">Principal</div>
+                    <div class="member-affiliation">PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="committee-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Conference Chair</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. S. Karthikeyan</div>
+                    <div class="member-title">Professor & Head</div>
+                    <div class="member-affiliation">Department of Mathematics, PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="committee-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Organizing Committee</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. M. Senthil Kumar</div>
+                    <div class="member-title">Associate Professor</div>
+                    <div class="member-affiliation">Department of Mathematics, PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. P. Balasubramaniam</div>
+                    <div class="member-title">Professor</div>
+                    <div class="member-affiliation">Department of Mathematics, PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. R. Sakthivel</div>
+                    <div class="member-title">Associate Professor</div>
+                    <div class="member-affiliation">Department of Mathematics, PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Dr. K. Ratnavelu</div>
+                    <div class="member-title">Assistant Professor</div>
+                    <div class="member-affiliation">Department of Mathematics, PSG College of Technology</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="committee-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>International Advisory Committee</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Prof. John Smith</div>
+                    <div class="member-title">Professor</div>
+                    <div class="member-affiliation">University of Cambridge, UK</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Prof. Maria Garcia</div>
+                    <div class="member-title">Professor</div>
+                    <div class="member-affiliation">MIT, USA</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Prof. Hiroshi Tanaka</div>
+                    <div class="member-title">Professor</div>
+                    <div class="member-affiliation">University of Tokyo, Japan</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="committee-member">
+                    <div class="member-photo">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-name">Prof. Klaus Mueller</div>
+                    <div class="member-title">Professor</div>
+                    <div class="member-affiliation">Technical University of Munich, Germany</div>
+                    <div class="member-contact">
+                        <a href="mailto:"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ICAMM 2025</h3>
+                    <p>Sixth International Conference on Applied Mathematical Models</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#call-for-papers">Call for Papers</a></li>
+                        <li><a href="index.html#registration">Registration</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>PSG College of Technology<br>Coimbatore, Tamil Nadu, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>icamm2025@psgtech.ac.in</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ICAMM 2025. All rights reserved. | PSG College of Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
